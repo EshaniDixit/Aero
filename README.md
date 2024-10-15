@@ -2,7 +2,14 @@
 
 This project is a web application that continuously monitors air quality across a city, predicts pollution levels based on historical data, and provides actionable measures to mitigate poor air quality. The app uses a machine learning model to predict the Air Quality Index (AQI) and display the current air quality status for different cities.
 
+## Table of Contents
 
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Technologies Used](#technologies-used)
+4. [Dataset](#dataset)
+5. [How the Model Works](#how-the-model-works)
+6. [Installation and Setup](#installation-and-setup)
 
 
 ## Overview
