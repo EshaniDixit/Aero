@@ -10,6 +10,7 @@ This project is a web application that continuously monitors air quality across 
 4. [Dataset](#dataset)
 5. [How the Model Works](#how-the-model-works)
 6. [Installation and Setup](#installation-and-setup)
+7. [Usage](#usage)
 
 
 ## Overview
