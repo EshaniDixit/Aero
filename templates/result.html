@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
-            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            background: linear-gradient(135deg, #b2ebf2, #b2ebf2);
+            background-repeat:repeat;
             font-family: 'Roboto', sans-serif;
             margin: 0;
             display: flex;
@@ -19,7 +20,7 @@
 
         .container {
             max-width: 600px;
-            margin-top: 700px;
+            margin-top: 900px;
             background: #ffffff;
             padding: 20px;
             border-radius: 12px;
@@ -168,14 +169,18 @@
             <div class="icon">&#128200;</div>
             <div class="title">AQI</div>
             <div class="value">{{ data['AQI'] }}
-                {% if aqi is not none %}
-            <p>Health Recommendation: {{ recommendation }}</p>
-        {% else %}
-            <p>{{ recommendation }}</p>
-        {% endif %}
             </div>
         </div>
-
+        <div class="card">
+            <div class="icon">&#129657;</div>
+            <div class="title">Health Recommendation</div>
+            <div class="value">{% if aqi is not none %}
+                <p> {{ recommendation }}</p>
+            {% else %}
+                <p>{{ recommendation }}</p>
+            {% endif %}
+        </div>
+        
         
 
         <a href="/" class="btn btn-primary">Predict Another City</a>

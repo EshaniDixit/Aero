@@ -59,11 +59,14 @@ def predict():
     city = request.form['city']
     air_quality_data = predict_air_quality(city)
 
-    if pd.notnull(air_quality_data['PM2.5']):  # or air_quality_data['AQI'] is not None
+    if pd.notnull(air_quality_data['PM2.5']):  # Ensures the data is valid
         latest_aqi = air_quality_data['AQI']
         recommendation, air_quality_status = get_health_recommendations(latest_aqi)
+        
+        # Pass data, recommendation, and status to the template
         return render_template('result.html', data=air_quality_data, aqi=latest_aqi, recommendation=recommendation, air_quality_status=air_quality_status)
     else:
+        # Handle case when city is not found or data is invalid
         return render_template('result.html', data=None, aqi=None, recommendation="City not found.", air_quality_status=None)
 
 
