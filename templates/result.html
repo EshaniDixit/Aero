@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 700px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        h1 {
+            color: #00796b;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 28px; /* Centered the title */
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .list-group-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .list-group-item span {
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .btn-primary {
+            background-color: #00796b;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #004d40;
+        }
+        .card {
+            background-color: #e0f7fa;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 48px;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #333;
+            margin: 5px 0;
+            font-weight: bold; /* Bold titles for clarity */
+        }
+
+        .value {
+            font-size: 24px; /* Increased font size for values */
+            color: #1e272e; /* Darker color for better contrast */
+            font-weight: 500;
+            margin-top: 5px; /* Added margin for spacing */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 600px) {
+            .icon {
+                font-size: 36px;
+            }
+
+            .value {
+                font-size: 20px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+
+            .btn-primary {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AQI Prediction for {{ data['City'] }}</h1>
+
+        <div class="card">
+            <div class="icon">&#128168;</div>
+            <div class="title">PM2.5</div>
+            <div class="value">{{ data['PM2.5'] | round(2) }} µg/m³</div>
+        </div>
+
+        <div class="card">
+            <div class="icon">&#128168;</div>
+            <div class="title">PM10</div>
+            <div class="value">{{ data['PM10'] | round(2) }} µg/m³</div>
+        </div>
+
+        <div class="card">
+            <div class="icon">&#9889;</div>
+            <div class="title">NO2</div>
+            <div class="value">{{ data['NO2'] | round(2) }} µg/m³</div>
+        </div>
+
+        <div class="card">
+            <div class="icon">&#127752;</div>
+            <div class="title">O3</div>
+            <div class="value">{{ data['O3'] | round(2) }} µg/m³</div>
+        </div>
+
+        <div class="card">
+            <div class="icon">&#128200;</div>
+            <div class="title">AQI</div>
+            <div class="value">{{ data['AQI'] }}
+                {% if aqi is not none %}
+            <p>Health Recommendation: {{ recommendation }}</p>
+        {% else %}
+            <p>{{ recommendation }}</p>
+        {% endif %}
+            </div>
+        </div>
+
+        
+
+        <a href="/" class="btn btn-primary">Predict Another City</a>
+    </div>
+</body>
+</html>
